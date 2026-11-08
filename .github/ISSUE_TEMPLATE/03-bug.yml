@@ -24,7 +24,7 @@ body:
   - type: dropdown
     id: area
     attributes:
-      label: 의심 영역
+      label: 의심 영역 (다중 선택)
       description: 모르면 비워두세요. 선택하면 area 라벨이 자동 등록됩니다.
       multiple: true
       options:
