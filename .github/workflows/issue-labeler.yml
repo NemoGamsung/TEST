@@ -2,6 +2,7 @@
 #  - "작업 영역" / "의심 영역"  → area:*
 #  - "심각도"                   → severity:*
 # 이슈 폼 응답은 본문에 "### <항목 이름>\n\n<값>" 형태로 저장되므로 그 구간을 읽습니다.
+# 항목 이름 뒤에 "(다중 선택)" 같은 문구가 붙어도 매칭됩니다.
 name: issue-labeler
 
 on:
@@ -24,7 +25,7 @@ jobs:
 
             // "### 제목" 다음부터 다음 "###" 전까지의 값을 읽음
             const section = (heading) => {
-              const re = new RegExp(`###\\s*${heading}\\s*\\n+([\\s\\S]*?)(?=\\n###|$)`);
+              const re = new RegExp(`###\\s*${heading}[^\\n]*\\n+([\\s\\S]*?)(?=\\n###|$)`);
               const m = body.match(re);
               if (!m) return [];
               const v = m[1].trim();
